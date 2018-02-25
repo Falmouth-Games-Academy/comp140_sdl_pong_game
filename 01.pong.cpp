@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #undef  main
+#include<iostream>
 
 #include <stdlib.h> //rand()
 #include "timer.h"
@@ -41,6 +42,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	window = SDL_CreateWindow("title", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_OPENGL);
+	
 
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -72,9 +74,12 @@ int main(int argc, char *argv[]) {
 					quitting = true;
 				}
 			}
-
+			/*
+			Game Update Function
+			*/
 			myGame->Update();
-			{				
+			{		
+				
 				myGame->Draw(renderer);
 
 				myGame->debugPrinter->Print(renderer, 10, 80, RGBATOCOLOR(255, 0, 0, 255), "%f %f %f", elaspedTime, fpsTime, 1000.0f/fpsTime);
@@ -103,15 +108,17 @@ int main(int argc, char *argv[]) {
 	switch (currentState)
 	{
 		case State_1:
-			//do this
+			std::cout << "State1" << std::endl;
 			break;
 		
 		case State_2:
 			//do that
+			std::cout << "State2" << std::endl;
 			break;
 
 		case State_3:
 			//do the other
+			std::cout << "State3" << std::endl;
 			break;
 		default:
 			throw "Unhandled state";
