@@ -57,12 +57,26 @@ bool Pong::Update()
 	}
 
 	TheBall.Move();	
+/* ===============================================================================================================
+	Arduino Interfacing Code Connor Seán Rodgers
+   ===============================================================================================================
+*/
+	serielInterface->getPositions(); // Get positions from serial arduino
+	/*  ===========================================================================================================
+		Player 1
+		===========================================================================================================
+	*/
+	int leftPos = serielInterface->getPot1(); // Left dial
 
-	serielInterface->getPositions();
+	ThePlayers[0].setPosY(leftPos); // PLayer 1 Position
 
-	int leftPos = serielInterface->getPot1();
+	/*  ===========================================================================================================
+		Player 2
+		===========================================================================================================
+	*/
+	int rightPos = serielInterface->getPot2(); // Right dial
 
-	ThePlayers[0].setPosY(leftPos);
+	ThePlayers[1].setPosY(rightPos); // PLayer 2 Position
 
 	return true;
 }
