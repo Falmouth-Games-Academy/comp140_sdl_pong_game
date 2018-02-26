@@ -9,6 +9,11 @@ public:
 	void virtual Render(SDL_Renderer* renderer);
 
 	bool virtual IsColliding(const Object& o);
+
+	void setPosY(float y)
+	{
+		posY = y;
+	};
 protected:
 	float posX,posY;
 	float w,h;
