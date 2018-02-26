@@ -20,21 +20,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="01.pong.cpp" />
+    <ClCompile Include="Arduino.cpp" />
     <ClCompile Include="Pong\Ball.cpp" />
     <ClCompile Include="Pong\bitmap.cpp" />
     <ClCompile Include="Pong\DebugPrinter.cpp" />
     <ClCompile Include="Pong\Object.cpp" />
     <ClCompile Include="Pong\Player.cpp" />
     <ClCompile Include="Pong\Pong.cpp" />
+    <ClCompile Include="Pong\SerialInterface.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arduino.h" />
     <ClInclude Include="Pong\Ball.h" />
     <ClInclude Include="Pong\bitmap.h" />
     <ClInclude Include="Pong\DebugPrinter.h" />
     <ClInclude Include="Pong\Object.h" />
     <ClInclude Include="Pong\Player.h" />
     <ClInclude Include="Pong\Pong.h" />
+    <ClInclude Include="Pong\SerialInterface.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -42,7 +46,7 @@
     <ProjectGuid>{265842E8-ACE4-470D-AAB4-EF4D0825A644}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DesignPatterns</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
     <ProjectName>01.Pong</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -117,6 +121,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d  "$(ProjectDir)3rdParty\SDL2-2.0.7\lib\x86\sdl2.dll" "$(OutDir)"
@@ -131,10 +136,13 @@ xcopy "$(ProjectDir)resources\*.*" "$(TargetDir)resources\" /Y
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\comp140_sdl_pong_game\3rdParty\SDL2-2.0.7;D:\comp140_sdl_pong_game\3rdParty\serial;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\comp140_sdl_pong_game\3rdParty\SDL2-2.0.7;D:\comp140_sdl_pong_game\3rdParty\serial;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

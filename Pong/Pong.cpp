@@ -16,6 +16,9 @@ bool Pong::Init(SDL_Renderer *renderer)
 
 	debugPrinter = new DebugPrinter();
 	debugPrinter->Init(renderer);
+
+	serielInterface = new SerialInterface();
+
 		
 	return true;
 }
@@ -54,6 +57,26 @@ bool Pong::Update()
 	}
 
 	TheBall.Move();	
+/* ===============================================================================================================
+	Arduino Interfacing Code Connor Seán Rodgers
+   ===============================================================================================================
+*/
+	serielInterface->getPositions(); // Get positions from serial arduino
+	/*  ===========================================================================================================
+		Player 1
+		===========================================================================================================
+	*/
+	int leftPos = serielInterface->getPot1(); // Left dial
+
+	ThePlayers[0].setPosY(leftPos); // PLayer 1 Position
+
+	/*  ===========================================================================================================
+		Player 2
+		===========================================================================================================
+	*/
+	int rightPos = serielInterface->getPot2(); // Right dial
+
+	ThePlayers[1].setPosY(rightPos); // PLayer 2 Position
 
 	return true;
 }
@@ -95,6 +118,9 @@ bool Pong::Draw(SDL_Renderer *renderer)
 
 bool Pong::Shutdown()
 {
+	serielInterface->close();
+
+	delete serielInterface;
 	return true;
 }
 

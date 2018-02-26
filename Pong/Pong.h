@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Player.h"
 #include "DebugPrinter.h"
+#include "SerialInterface.h"
 
 class Pong
 {
@@ -20,5 +21,6 @@ class Pong
 		bool Shutdown();
 
 		DebugPrinter* debugPrinter;
+		SerialInterface *serielInterface;
 
 	};
