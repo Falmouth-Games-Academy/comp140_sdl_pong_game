@@ -1,5 +1,6 @@
 #include "Pong.h"
 #include <stdio.h>
+#include "SerialInterface.cpp"
 
 bool Pong::Init(SDL_Renderer *renderer)
 {
@@ -55,6 +56,15 @@ bool Pong::Update()
 
 	TheBall.Move();	
 
+	//This creates a new interface and calls up the positions function
+	SerialInterface = new SerialInterface();
+	SerialInterface->getnewPositions();
+	
+	//This gets the first position and sets it as the players current position
+	int leftPos = SerialInterface->getPot1();
+	ThePlayers[0].setPosY(leftPos);
+
+
 	return true;
 }
 
@@ -88,7 +98,6 @@ bool Pong::Draw(SDL_Renderer *renderer)
 		debugPrinter->Print(renderer, 400,20,RGBTOCOLOR(255,255,255),str);
 		debugPrinter->SetScale(1, 1);
 		debugPrinter->SetJustification(DebugPrinter::Justifiy_Left);
-		
 	
 	return true;
 }

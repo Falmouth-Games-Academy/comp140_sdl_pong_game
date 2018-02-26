@@ -14,6 +14,7 @@ void Player::init()
 	speed = 10;
 }
 
+			
 void Player::Move()
 {
 	assert(mySide != Side_Undefined);

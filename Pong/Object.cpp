@@ -9,6 +9,12 @@ bool Object::IsColliding(const Object& o)
 	if((posY + h) < o.posY) return false;
 	if((posY ) > (o.posY + o.h)) return false;
 
+	//Setting the PosY to be a float
+	void setPosY(float y)
+		{
+		posY = y;
+		};
+
 	return true;
 }
 
