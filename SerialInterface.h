@@ -23,6 +23,6 @@ private:
 	serial::Serial* mySerial;
 	bool connected = false;
 
-	int pot1 = 0;
-	int pot2 = 0;
+	int pos1 = 0;
+	int pos2 = 0;
 };
