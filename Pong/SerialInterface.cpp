@@ -7,27 +7,52 @@ using std::cout;
 using std::vector;
 using std::exception;
 
+const bool InStudio = true;
+const std::string PORT_NO = "COM6";
+
 SerialInterface::SerialInterface()
 {
-	//Store list of available ports in vector
-	vector <serial::PortInfo> devicesFound = serial::list_ports();
-	vector <serial::PortInfo>::iterator iter = devicesFound.begin();
-
-	//Iterate over ports to try and establish a serial connection
-	while (iter != devicesFound.end())
+	if (!InStudio) 
 	{
-		serial::PortInfo device = *iter++;
-		std::string port = device.port.c_str();
+		//Store list of available ports in vector
+		vector <serial::PortInfo> devicesFound = serial::list_ports();
+		vector <serial::PortInfo>::iterator iter = devicesFound.begin();
 
+		//Iterate over ports to try and establish a serial connection
+		while (iter != devicesFound.end())
+		{
+			serial::PortInfo device = *iter++;
+			std::string port = device.port.c_str();
+
+			try
+			{
+				mySerial = new serial::Serial(port, 115200, serial::Timeout::simpleTimeout(250));
+				if (mySerial->isOpen())
+				{
+					cout << "Connection Success: " << port << "\n";
+					connected = true;
+
+					break;
+				}
+			}
+
+			catch (exception &e)
+			{
+
+			}
+		}
+	}
+
+	//Use set port number for when other ports are open with other devices.
+	else
+	{
 		try
 		{
-			mySerial = new serial::Serial(port, 115200, serial::Timeout::simpleTimeout(250));
+			mySerial = new serial::Serial(PORT_NO, 115200, serial::Timeout::simpleTimeout(250));
 			if (mySerial->isOpen())
 			{
-				cout << "Connection Success: " << port << "\n";
+				cout << "Connection Success: " << PORT_NO << "\n";
 				connected = true;
-
-				break;
 			}
 		}
 
