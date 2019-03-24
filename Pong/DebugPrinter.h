@@ -5,7 +5,7 @@ int RGBATOCOLOR(unsigned char r, unsigned char g, unsigned char b, unsigned char
 int RGBTOCOLOR(unsigned char r, unsigned char g, unsigned char b);
 void COLORTORGBA(int col, unsigned char& r, unsigned char& g, unsigned char& b, unsigned char& a);
 
-
+//http://www.gameprogrammingpatterns.com/singleton.html
 class DebugPrinter
 {
 public:

@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Player.h"
 
+//http://www.gameprogrammingpatterns.com/observer.html
 class Ball : public Object
 {
 public:
