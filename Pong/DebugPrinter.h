@@ -16,9 +16,15 @@ public:
 	void SetJustification(Justification just);
 	void Print(SDL_Renderer* renderer,int x, int y, int colour, char* fmt, ...);
 
+	static DebugPrinter& instance()
+	{
+		static DebugPrinter *instance = new DebugPrinter();
+		return *instance;
+	};
 	
 
 private:
+	DebugPrinter() {};
 	int calculateOffset(const char *buffer);
 
 	SDL_Texture*    debugFont;

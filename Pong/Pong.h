@@ -19,6 +19,6 @@ class Pong
 		bool Draw(SDL_Renderer *renderer);
 		bool Shutdown();
 
-		DebugPrinter* debugPrinter;
+		//DebugPrinter* debugPrinter;
 
 	};

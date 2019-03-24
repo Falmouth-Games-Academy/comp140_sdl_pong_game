@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 			{				
 				myGame->Draw(renderer);
 
-				myGame->debugPrinter->Print(renderer, 10, 80, RGBATOCOLOR(255, 0, 0, 255), "%f %f %f", elaspedTime, fpsTime, 1000.0f/fpsTime);
+				DebugPrinter::instance().Print(renderer, 10, 80, RGBATOCOLOR(255, 0, 0, 255), "%f %f %f", elaspedTime, fpsTime, 1000.0f/fpsTime);
 
 
 				SDL_RenderPresent(renderer);

@@ -14,8 +14,10 @@ bool Pong::Init(SDL_Renderer *renderer)
 	Score[0] = 0;
 	Score[1] = 0;
 
-	debugPrinter = new DebugPrinter();
-	debugPrinter->Init(renderer);
+	//debugPrinter = new DebugPrinter();
+	//debugPrinter->Init(renderer);
+
+	DebugPrinter::instance().Init(renderer);
 		
 	return true;
 }
@@ -83,11 +85,11 @@ bool Pong::Draw(SDL_Renderer *renderer)
 		char str[255];
 		sprintf(str,"%d - %d",Score[0],Score[1]);
 
-		debugPrinter->SetScale(8, 8);
-		debugPrinter->SetJustification(DebugPrinter::Justifiy_Centre);
-		debugPrinter->Print(renderer, 400,20,RGBTOCOLOR(255,255,255),str);
-		debugPrinter->SetScale(1, 1);
-		debugPrinter->SetJustification(DebugPrinter::Justifiy_Left);
+		DebugPrinter::instance().SetScale(8, 8);
+		DebugPrinter::instance().SetJustification(DebugPrinter::Justifiy_Centre);
+		DebugPrinter::instance().Print(renderer, 400,20,RGBTOCOLOR(255,255,255),str);
+		DebugPrinter::instance().SetScale(1, 1);
+		DebugPrinter::instance().SetJustification(DebugPrinter::Justifiy_Left);
 		
 	
 	return true;
