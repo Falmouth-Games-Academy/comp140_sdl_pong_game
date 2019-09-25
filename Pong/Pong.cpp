@@ -1,5 +1,6 @@
 #include "Pong.h"
 #include <stdio.h>
+#include <iostream>
 
 bool Pong::Init(SDL_Renderer *renderer)
 {
@@ -16,24 +17,30 @@ bool Pong::Init(SDL_Renderer *renderer)
 
 	debugPrinter = new DebugPrinter();
 	debugPrinter->Init(renderer);
+
+	serialInterface = new SerialInterface();
 		
 	return true;
 }
 
 bool Pong::Update()
 {
+	serialInterface->getPositions();
+
 	if(TheBall.IsOutOfBounds() == true)
 	{
 		Player::Side serveTo = Player::Side_Undefined;
 		if(TheBall.OutOfBoundsSide() == Player::Side_Left)
 		{
 			Score[1]++;
+			serialInterface->send("B");
 			serveTo = Player::Side_Left;
 		}
 
 		if(TheBall.OutOfBoundsSide() == Player::Side_Right)
 		{
 			Score[0]++;
+			serialInterface->send("R");
 			serveTo = Player::Side_Right;
 		}
 
@@ -49,8 +56,9 @@ bool Pong::Update()
 			TheBall.PlayerReturns();
 		}
 
-		ThePlayers[0].Move();
-		ThePlayers[1].Move();
+		//Set player's y positions based on potentiometer input.
+		ThePlayers[0].setYPos(serialInterface->getPot1());
+		ThePlayers[1].setYPos(serialInterface->getPot2());
 	}
 
 	TheBall.Move();	

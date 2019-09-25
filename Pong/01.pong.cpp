@@ -7,8 +7,10 @@
 #include <stdlib.h> //rand()
 #include "timer.h"
 
-#include "Pong/Pong.h"
+#include "Pong.h"
 #include <list>
+
+#include "SerialInterface.h"
 
 bool quitting = false;
 float r = 0.0f;

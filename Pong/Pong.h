@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "Player.h"
 #include "DebugPrinter.h"
+#include "SerialInterface.h"
 
 class Pong
 {
@@ -11,6 +12,8 @@ class Pong
 		Ball TheBall;
 
 		void DrawCourt(SDL_Renderer* renderer);
+
+		SerialInterface* serialInterface;
 	public:
 		
 		int Score[2];

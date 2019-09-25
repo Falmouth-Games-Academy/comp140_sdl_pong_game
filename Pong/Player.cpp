@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <assert.h>
 #include <windows.h>
+#include <iostream>
 
 
 void Player::init()
@@ -22,28 +23,10 @@ void Player::Move()
 
 	if(mySide == Side_Left)
 	{		
-		if(GetAsyncKeyState('Q') != 0)
-		{
-			delta -= speed;
-		}
-
-		if(GetAsyncKeyState('A') != 0)
-		{
-			delta += speed;
-		}
 	}
 
 	if(mySide == Side_Right)
 	{
-		if(GetAsyncKeyState('P') != 0)
-		{
-			delta -= speed;
-		}
-
-		if(GetAsyncKeyState('L') != 0)
-		{
-			delta += speed;
-		}
 	}
 
 	if(( posY + delta > 100) && ((posY + delta) < (600 - h )))
